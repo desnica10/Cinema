@@ -89,4 +89,18 @@ public class UserService {
 
         return true;
     }
+
+    public boolean changePassword(Long userId, UserDTO request) {
+
+        User user = userRepository.findById(userId).orElse(null);
+
+        if (user == null){
+            return false;
+        }
+
+        user.setPassword(request.getPassword());
+        userRepository.save(user);
+
+        return true;
+    }
 }

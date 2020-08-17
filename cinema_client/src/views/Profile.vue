@@ -121,7 +121,7 @@
                   <v-btn color="red white--text" @click="cancelPassword">Cancel</v-btn>
                 </v-col>
                 <v-col align="end">
-                  <v-btn color="green white--text" @click="save">Restart</v-btn>
+                  <v-btn color="green white--text" @click="restartPassword">Restart</v-btn>
                 </v-col>
               </v-row>
             </v-card-text>
@@ -162,9 +162,15 @@ export default {
         validPassword: false,
         rules: {
           username: [(v) => !!v || "Username is required"],
-          password: [(v) => !!v || "Password is required", (v) => v === this.user.password || "Password does not match"],
+          password: [
+            (v) => !!v || "Password is required",
+            (v) => v === this.user.password || "Password does not match",
+          ],
           newPassword: [(v) => !!v || "Password is required"],
-          confirmPassword: [(v) => !!v || "Password is required", (v) => v === this.newPassword || "Password does not match"],
+          confirmPassword: [
+            (v) => !!v || "Password is required",
+            (v) => v === this.newPassword || "Password does not match",
+          ],
           firstName: [(v) => !!v || "Name is required"],
           lastName: [(v) => !!v || "Surname is required"],
           phone: [(v) => !!v || "Phone is required"],
@@ -218,9 +224,27 @@ export default {
           this.alert.show = true;
         });
     },
-    cancelPassword(event){
-        this.$refs["passwordForm"].reset();
-    }
+    cancelPassword(event) {
+      this.$refs["passwordForm"].reset();
+    },
+    restartPassword(event) {
+      if (this.form.validPassword) {
+        this.user.password = this.newPassword;
+        axios
+          .post(`/user/${this.$store.state.user.user.id}`, this.user)
+          .then((response) => {
+            this.$refs["passwordForm"].reset();
+            this.alert.text = response.data;
+            this.alert.color = "green";
+            this.alert.show = true;
+          })
+          .catch((error) => {
+            this.alert.text = error.response.data;
+            this.alert.color = "red";
+            this.alert.show = true;
+          });
+      }
+    },
   },
   mounted() {
     axios

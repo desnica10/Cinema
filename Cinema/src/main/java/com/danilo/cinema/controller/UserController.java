@@ -15,7 +15,7 @@ public class UserController {
     UserService userService;
 
     @GetMapping("/{userId}")
-    public ResponseEntity<?> register(@PathVariable Long userId){
+    public ResponseEntity<?> getUser(@PathVariable Long userId){
 
         UserDTO user = userService.findUserById(userId);
 
@@ -27,7 +27,7 @@ public class UserController {
     }
 
     @PutMapping("/{userId}")
-    public ResponseEntity<?> register(@PathVariable Long userId, @RequestBody UserDTO request){
+    public ResponseEntity<?> updateUser(@PathVariable Long userId, @RequestBody UserDTO request){
 
         UserDTO user = userService.updateUser(userId, request);
 
@@ -36,5 +36,17 @@ public class UserController {
         }
 
         return new ResponseEntity<>(user, HttpStatus.OK);
+    }
+
+    @PostMapping("/{userId}")
+    public ResponseEntity<?> changePassword(@PathVariable Long userId, @RequestBody UserDTO request){
+
+        boolean success = userService.changePassword(userId, request);
+
+        if (success == false){
+            return new ResponseEntity<>("Something went wrong", HttpStatus.BAD_REQUEST);
+        }
+
+        return new ResponseEntity<>("Your changed password successfuly", HttpStatus.OK);
     }
 }
