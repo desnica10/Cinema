@@ -77,13 +77,14 @@ export default {
     },
   }),
   methods: {
-    ...mapActions(["setUser"]),
+    ...mapActions(["setUser", "setCinemasAction"]),
     login() {
       if (this.form.valid) {
         axios
           .post("/login", this.user)
           .then((response) => {
             this.setUser(response.data);
+            this.setCinemasAction(response.data);
             this.$router.push("/");
           })
           .catch((error) => {

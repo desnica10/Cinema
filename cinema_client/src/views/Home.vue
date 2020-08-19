@@ -1,6 +1,6 @@
 <template>
   <div>
-      <cinemas v-if="user.type === 'ADMIN'" />
+      <cinemas v-if="user !== null && user.type === 'ADMIN'" />
   </div>
 </template>
 

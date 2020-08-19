@@ -36,6 +36,18 @@ public class CinemaController {
         return new ResponseEntity<>(cinema, HttpStatus.OK);
     }
 
+    @GetMapping("/manager/{managerId}")
+    public ResponseEntity<?> getManagerCinemas(@PathVariable Long managerId){
+
+        List<CinemaDTO> cinemas = cinemaService.findManagerCinemas(managerId);
+
+        if (cinemas == null){
+            return new ResponseEntity<>("Manager do not exists", HttpStatus.BAD_REQUEST);
+        }
+
+        return new ResponseEntity<>(cinemas, HttpStatus.OK);
+    }
+
     @PostMapping("")
     public ResponseEntity<?> addCinema(@RequestBody CinemaDTO request){
 

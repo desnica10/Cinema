@@ -81,9 +81,10 @@ export default {
     };
   },
   methods: {
-    ...mapActions(["removeUser"]),
+    ...mapActions(["removeUser","setCinemasAction"]),
     logout() {
       this.removeUser();
+      this.setCinemasAction(null);
       this.$router.push("/login");
     },
   },

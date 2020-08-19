@@ -2,7 +2,9 @@ package com.danilo.cinema.service;
 
 import com.danilo.cinema.dto.CinemaDTO;
 import com.danilo.cinema.model.Cinema;
+import com.danilo.cinema.model.User;
 import com.danilo.cinema.repository.CinemaRepository;
+import com.danilo.cinema.repository.UserRepository;
 import org.dozer.DozerBeanMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,6 +19,9 @@ public class CinemaService {
 
     @Autowired
     CinemaRepository cinemaRepository;
+
+    @Autowired
+    UserRepository userRepository;
 
     public List<CinemaDTO> findAllCinemas() {
 
@@ -81,5 +86,22 @@ public class CinemaService {
         cinemaRepository.save(cinema);
 
         return findAllCinemas();
+    }
+
+    public List<CinemaDTO> findManagerCinemas(Long managerId) {
+        User manager = userRepository.findById(managerId).orElse(null);
+
+        if (manager == null){
+            return null;
+        }
+
+        List<Cinema> cinemas = cinemaRepository.findAllByManagers(manager);
+        List<CinemaDTO> cinemaDTOs = new ArrayList<>();
+
+        for (Cinema cinema : cinemas) {
+            cinemaDTOs.add(mapper.map(cinema, CinemaDTO.class));
+        }
+
+        return cinemaDTOs;
     }
 }

@@ -1,6 +1,6 @@
 <template>
   <v-app>
-    <AppBar />
+    <AppBar v-if="true"/>
 
     <navigation-drawer :user="user" v-if="user != null" />
 

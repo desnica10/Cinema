@@ -6,25 +6,25 @@
 
     <v-spacer></v-spacer>
 
-    <template  v-if="user === null || user.type !== 'ADMIN'">
-    <v-select
-      v-model="select"
-      :hint="`${select.name}, ${select.address}`"
-      :items="items"
-      item-text="name"
-      item-value="name"
-      label="Select"
-      append-outer-icon="mdi-theater"
-      persistent-hint
-      return-object
-      single-line
-    ></v-select>
+    <template v-if="user === null || user.type !== 'ADMIN'">
+      <v-select
+        v-model="$store.state.cinema.cinema"
+        :hint="`${$store.state.cinema.cinema.name}, ${$store.state.cinema.cinema.address}`"
+        :items="cinemas"
+        item-text="name"
+        item-value="name"
+        label="Select"
+        append-outer-icon="mdi-theater"
+        persistent-hint
+        return-object
+        single-line
+      ></v-select>
 
-    <v-spacer></v-spacer>
+      <v-spacer></v-spacer>
 
-    <v-btn style="margin-right: 3%;" icon>
-      <v-icon>mdi-magnify</v-icon>
-    </v-btn>
+      <v-btn style="margin-right: 3%;" icon>
+        <v-icon>mdi-magnify</v-icon>
+      </v-btn>
     </template>
     <template v-if="user == null">
       <v-btn to="/login" text>
@@ -40,26 +40,18 @@
 </template>
 
 <script>
-import { mapGetters } from "vuex";
-import axios from 'axios'
+import { mapGetters, mapActions } from "vuex";
+import axios from "axios";
 
 export default {
   data() {
-    return {
-      select: { name: "Cinaplexxx", address: "Bulevar Oslobođenja 119, 21000 Novi Sad" },
-      items: [
-        { name: "Cinaplexxx", address: "Bulevar Oslobođenja 119, 21000 Novi Sad" },
-        { name: "Arena", address: "Bulevar Oslobođenja 119, 21000 Novi Sad" },
-      ],
-    };
+    return {};
   },
-  computed: { ...mapGetters(["user"]) },
-  mounted(){
-    axios.get("/cinema").then((response) => {
-      this.items = response.data;
-      this.select = this.items[0];
-    });
-  }
+  computed: { ...mapGetters(["user", "cinemas"]) },
+  methods: { ...mapActions(["setCinemasAction"]) },
+  mounted() {
+    this.setCinemasAction(this.user);
+  },
 };
 </script>
 
