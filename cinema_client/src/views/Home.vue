@@ -1,12 +1,24 @@
 <template>
-  <router-view />
+  <div>
+      <cinemas v-if="user.type === 'ADMIN'" />
+  </div>
 </template>
 
 <script>
-import { mapGetters, mapActions } from "vuex";
+import { mapGetters } from "vuex";
+
+import Cinemas from './admin/Cinemas.vue'
 
 export default {
-  name: "Home",
-  computed: { ...mapGetters(["user"]) },
-};
+    components: {
+        Cinemas
+    },
+    computed: {
+        ...mapGetters(['user'])
+    }
+}
 </script>
+
+<style>
+
+</style>

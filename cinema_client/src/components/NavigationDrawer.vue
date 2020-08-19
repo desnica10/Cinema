@@ -14,16 +14,40 @@
 
     <v-divider></v-divider>
 
-    <v-list nav>
-      <v-list-item link to="/">
-        <v-list-item-icon>
-          <v-icon>mdi-video-vintage</v-icon>
-        </v-list-item-icon>
-        <v-list-item-title>Movies</v-list-item-title>
-      </v-list-item>
-    </v-list>
+    <template v-if="user.type === 'CUSTOMER'">
+      <v-list nav>
+        <v-list-item link to="/">
+          <v-list-item-icon>
+            <v-icon>mdi-video-vintage</v-icon>
+          </v-list-item-icon>
+          <v-list-item-title>Movies</v-list-item-title>
+        </v-list-item>
+      </v-list>
 
-    <v-divider />
+      <v-divider />
+    </template>
+
+    <template v-if="user.type === 'ADMIN'">
+      <v-list nav>
+        <v-list-item link to="/">
+          <v-list-item-icon>
+            <v-icon>mdi-theater</v-icon>
+          </v-list-item-icon>
+          <v-list-item-title>Cinemas</v-list-item-title>
+        </v-list-item>
+      </v-list>
+      <v-divider />
+      
+      <v-list nav>
+        <v-list-item link to="/users">
+          <v-list-item-icon>
+            <v-icon>mdi-account-group</v-icon>
+          </v-list-item-icon>
+          <v-list-item-title>Users</v-list-item-title>
+        </v-list-item>
+      </v-list>
+      <v-divider />
+    </template>
 
     <template v-slot:append>
       <v-list>
@@ -62,7 +86,7 @@ export default {
       this.removeUser();
       this.$router.push("/login");
     },
-  }
+  },
 };
 </script>
 
