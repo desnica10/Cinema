@@ -8,6 +8,9 @@ import org.dozer.DozerBeanMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Service
 public class UserService {
 
@@ -102,5 +105,58 @@ public class UserService {
         userRepository.save(user);
 
         return true;
+    }
+
+    public List<UserDTO> findActiveManagers() {
+
+        List<User> users = userRepository.findAllByTypeAndActive(UserType.MANAGER, true);
+
+        List<UserDTO> userDTOs = new ArrayList<>();
+
+        for (User user: users) {
+            userDTOs.add(mapper.map(user, UserDTO.class));
+        }
+
+        return userDTOs;
+    }
+
+    public List<UserDTO> findAllUsers() {
+        List<User> users = userRepository.findAll();
+
+        List<UserDTO> userDTOs = new ArrayList<>();
+
+        for (User user: users) {
+            userDTOs.add(mapper.map(user, UserDTO.class));
+        }
+
+        return userDTOs;
+    }
+
+    public List<UserDTO> changeUserActivity(Long userId, boolean active) {
+        User user = userRepository.findById(userId).orElse(null);
+
+        if (user == null){
+            return null;
+        }
+
+        user.setActive(active);
+
+        userRepository.save(user);
+
+        return findAllUsers();
+    }
+
+    public List<UserDTO> changeUserType(Long userId, UserType type) {
+        User user = userRepository.findById(userId).orElse(null);
+
+        if (user == null){
+            return null;
+        }
+
+        user.setType(type);
+
+        userRepository.save(user);
+
+        return findAllUsers();
     }
 }

@@ -16,4 +16,5 @@ public class UserDTO {
     private String email;
     private Date birth;
     private UserType type;
+    private boolean active;
 }

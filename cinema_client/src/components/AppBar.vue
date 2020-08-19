@@ -6,6 +6,7 @@
 
     <v-spacer></v-spacer>
 
+    <template  v-if="user === null || user.type !== 'ADMIN'">
     <v-select
       v-model="select"
       :hint="`${select.name}, ${select.address}`"
@@ -24,6 +25,7 @@
     <v-btn style="margin-right: 3%;" icon>
       <v-icon>mdi-magnify</v-icon>
     </v-btn>
+    </template>
     <template v-if="user == null">
       <v-btn to="/login" text>
         Login
@@ -39,6 +41,7 @@
 
 <script>
 import { mapGetters } from "vuex";
+import axios from 'axios'
 
 export default {
   data() {
@@ -51,6 +54,12 @@ export default {
     };
   },
   computed: { ...mapGetters(["user"]) },
+  mounted(){
+    axios.get("/cinema").then((response) => {
+      this.items = response.data;
+      this.select = this.items[0];
+    });
+  }
 };
 </script>
 
