@@ -2,8 +2,10 @@ package com.danilo.cinema.service;
 
 import com.danilo.cinema.dto.ProjectionDTO;
 import com.danilo.cinema.model.Cinema;
+import com.danilo.cinema.model.Movie;
 import com.danilo.cinema.model.Projection;
 import com.danilo.cinema.repository.CinemaRepository;
+import com.danilo.cinema.repository.MovieRepository;
 import com.danilo.cinema.repository.ProjectioRepository;
 import org.dozer.DozerBeanMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +24,9 @@ public class ProjectionService {
 
     @Autowired
     CinemaRepository cinemaRepository;
+
+    @Autowired
+    MovieRepository movieRepository;
 
     public List<ProjectionDTO> findAllCinemaProjections(Long cinemaId) {
         Cinema cinema = cinemaRepository.findById(cinemaId).orElse(null);
@@ -78,5 +83,24 @@ public class ProjectionService {
         projectioRepository.delete(projection);
 
         return findAllCinemaProjections(projection.getCinema().getId());
+    }
+
+    public List<ProjectionDTO> findAllCinemaProjectionsOfMovie(Long cinemaId, Long movieId) {
+        Cinema cinema = cinemaRepository.findById(cinemaId).orElse(null);
+        Movie movie = movieRepository.findById(movieId).orElse(null);
+
+        if (cinema == null || movie == null){
+            return null;
+        }
+
+        List<Projection> projections = projectioRepository.findAllByCinemaAndMovie(cinema, movie);
+        List<ProjectionDTO> projectionDTOs = new ArrayList<>();
+
+        for (Projection projection : projections) {
+            ProjectionDTO projectionDTO = mapper.map(projection, ProjectionDTO.class);
+            projectionDTOs.add(projectionDTO);
+        }
+
+        return projectionDTOs;
     }
 }

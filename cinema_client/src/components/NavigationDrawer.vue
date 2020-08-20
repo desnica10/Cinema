@@ -24,7 +24,23 @@
         </v-list-item>
       </v-list>
       <v-divider />
-
+      <v-list nav>
+        <v-list-item link to="/tickets">
+          <v-list-item-icon>
+            <v-icon>mdi-ticket</v-icon>
+          </v-list-item-icon>
+          <v-list-item-title>Tickets</v-list-item-title>
+        </v-list-item>
+      </v-list>
+      <v-divider />
+      <v-list nav>
+        <v-list-item link to="/movies">
+          <v-list-item-icon>
+            <v-icon>mdi-movie-open</v-icon>
+          </v-list-item-icon>
+          <v-list-item-title>Whached Movies</v-list-item-title>
+        </v-list-item>
+      </v-list>
     </template>
 
     <template v-if="user.type === 'MANAGER'">

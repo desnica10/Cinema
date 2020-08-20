@@ -8,6 +8,9 @@ import Register from '../views/Register.vue'
 import Profile from '../views/Profile.vue'
 import Home from '../views/Home.vue'
 
+import Tickets from '../views/customer/Tickets.vue'
+import Watched from '../views/customer/Watched.vue'
+
 import Users from '../views/admin/Users.vue'
 
 import Halls from '../views/manager/Halls.vue'
@@ -49,6 +52,16 @@ const routes = [
         path: '/halls',
         name: 'Halls',
         component: Halls
+      },
+      {
+        path: '/tickets',
+        name: 'Tickets',
+        component: Tickets
+      },
+      {
+        path: '/movies',
+        name: 'Watched Movies',
+        component: Watched
       },
     ],
   },
