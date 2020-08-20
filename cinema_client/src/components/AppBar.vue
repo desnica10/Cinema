@@ -22,9 +22,9 @@
 
       <v-spacer></v-spacer>
 
-      <v-btn style="margin-right: 3%;" icon>
+      <!-- <v-btn style="margin-right: 3%;" icon>
         <v-icon>mdi-magnify</v-icon>
-      </v-btn>
+      </v-btn> -->
     </template>
     <template v-if="user == null">
       <v-btn to="/login" text>

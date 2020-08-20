@@ -1,6 +1,7 @@
 package com.danilo.cinema.controller;
 
 import com.danilo.cinema.dto.CinemaDTO;
+import com.danilo.cinema.dto.HallDTO;
 import com.danilo.cinema.service.CinemaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -90,5 +91,53 @@ public class CinemaController {
         }
 
         return new ResponseEntity<>(cinemas, HttpStatus.OK);
+    }
+
+    @GetMapping("/{cinemaId}/hall")
+    public ResponseEntity<?> getCinemaHalls(@PathVariable Long cinemaId){
+
+        List<HallDTO> halls = cinemaService.findCinemaHalls(cinemaId);
+
+        if (halls == null){
+            return new ResponseEntity<>("Cinema with that id do not exists", HttpStatus.BAD_REQUEST);
+        }
+
+        return new ResponseEntity<>(halls, HttpStatus.OK);
+    }
+
+    @PostMapping("/{cinemaId}/hall")
+    public ResponseEntity<?> addCinemaHall(@PathVariable Long cinemaId, @RequestBody HallDTO request){
+
+        List<HallDTO> halls = cinemaService.addCinemaHall(cinemaId, request);
+
+        if (halls == null){
+            return new ResponseEntity<>("Cinema with that id do not exists", HttpStatus.BAD_REQUEST);
+        }
+
+        return new ResponseEntity<>(halls, HttpStatus.OK);
+    }
+
+    @PutMapping("/{cinemaId}/hall")
+    public ResponseEntity<?> editCinemaHall(@PathVariable Long cinemaId, @RequestBody HallDTO request){
+
+        List<HallDTO> halls = cinemaService.editCinemaHalls(cinemaId, request);
+
+        if (halls == null){
+            return new ResponseEntity<>("Hall with that name already exsists", HttpStatus.BAD_REQUEST);
+        }
+
+        return new ResponseEntity<>(halls, HttpStatus.OK);
+    }
+
+    @DeleteMapping("/{cinemaId}/hall/{hallId}")
+    public ResponseEntity<?> deleteCinemaHall(@PathVariable Long cinemaId, @PathVariable Long hallId){
+
+        List<HallDTO> halls = cinemaService.deleteCinemaHall(cinemaId, hallId);
+
+        if (halls == null){
+            return new ResponseEntity<>("Cinema with that id do not exists", HttpStatus.BAD_REQUEST);
+        }
+
+        return new ResponseEntity<>(halls, HttpStatus.OK);
     }
 }

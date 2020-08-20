@@ -1,6 +1,5 @@
 package com.danilo.cinema.dto;
 
-import com.danilo.cinema.model.User;
 import lombok.Data;
 
 import java.util.HashSet;
@@ -13,5 +12,6 @@ public class CinemaDTO {
     private String address;
     private String phone;
     private String email;
-    Set<User> managers = new HashSet<>();
+    Set<UserDTO> managers = new HashSet<>();
+    Set<HallDTO> halls = new HashSet<>();
 }

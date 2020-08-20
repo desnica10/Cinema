@@ -1,14 +1,19 @@
 package com.danilo.cinema.model;
 
-import lombok.Data;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import javax.persistence.*;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
-@Data
-@Table
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity(name = "projections")
 public class Projection {
 
@@ -29,13 +34,13 @@ public class Projection {
     @ManyToOne(cascade = CascadeType.DETACH, fetch = FetchType.LAZY)
     private Cinema cinema;
 
-    @ManyToMany(cascade = CascadeType.DETACH)
+    @ManyToMany(cascade = CascadeType.DETACH, fetch = FetchType.LAZY)
     @JoinTable(name = "projections_halls",
             joinColumns = @JoinColumn(name = "projection_id"),
             inverseJoinColumns = @JoinColumn(name = "hall_id")
     )
     private Set<Hall> halls = new HashSet<>();
 
-    @OneToMany(mappedBy = "projection", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "projection", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private Set<Ticket> tickets = new HashSet<>();
 }
