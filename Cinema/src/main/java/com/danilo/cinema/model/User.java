@@ -1,15 +1,20 @@
 package com.danilo.cinema.model;
 
 import com.danilo.cinema.util.UserType;
-import lombok.Data;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import javax.persistence.*;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
-@Data
-@Table
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity(name = "users")
 public class User {
 

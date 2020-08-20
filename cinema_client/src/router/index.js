@@ -6,10 +6,11 @@ import Login from '../views/Login.vue'
 import Register from '../views/Register.vue'
 
 import Profile from '../views/Profile.vue'
-
 import Home from '../views/Home.vue'
 
 import Users from '../views/admin/Users.vue'
+
+import Halls from '../views/manager/Halls.vue'
 
 Vue.use(VueRouter)
 
@@ -43,6 +44,11 @@ const routes = [
         path: '/users',
         name: 'Users',
         component: Users
+      },
+      {
+        path: '/halls',
+        name: 'Halls',
+        component: Halls
       },
     ],
   },

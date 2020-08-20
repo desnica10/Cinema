@@ -20,10 +20,17 @@ const actions = {
                 commit('setCinemas', response.data);
                 commit('setCinema', response.data[0]);
             });
-        }else if (user.type === 'MANAGER') {
+        } else if (user.type === 'MANAGER') {
             axios.get(`/cinema/manager/${user.id}`).then((response) => {
-                commit('setCinemas', response.data);
-                commit('setCinema', response.data[0]);
+                if (response.data.length === 0) {
+                    commit('setCinemas', []);
+                    commit('setCinema', {
+                        name: '',
+                        address: ''
+                    });
+                }else {
+                    commit('setCinema', response.data[0]);
+                }
             });
         }
     },

@@ -1,14 +1,19 @@
 package com.danilo.cinema.model;
 
 import com.danilo.cinema.util.Genre;
-import lombok.Data;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
 
-@Data
-@Table
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity(name = "movies")
 public class Movie {
 
@@ -33,9 +38,9 @@ public class Movie {
     @Column(name = "grade")
     private double averageGrade;
 
-    @OneToMany(mappedBy = "movie", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "movie", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private Set<Grade> grades = new HashSet<>();
 
-    @OneToMany(mappedBy = "movie", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "movie", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private Set<Projection> projections = new HashSet<>();
 }

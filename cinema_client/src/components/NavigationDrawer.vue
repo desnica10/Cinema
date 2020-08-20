@@ -23,8 +23,29 @@
           <v-list-item-title>Movies</v-list-item-title>
         </v-list-item>
       </v-list>
-
       <v-divider />
+
+    </template>
+
+    <template v-if="user.type === 'MANAGER'">
+      <v-list nav>
+        <v-list-item link to="/">
+          <v-list-item-icon>
+            <v-icon>mdi-video-vintage</v-icon>
+          </v-list-item-icon>
+          <v-list-item-title>Projection</v-list-item-title>
+        </v-list-item>
+      </v-list>
+      <v-divider />
+
+      <v-list nav>
+        <v-list-item link to="/halls">
+          <v-list-item-icon>
+            <v-icon>mdi-seat</v-icon>
+          </v-list-item-icon>
+          <v-list-item-title>Halls</v-list-item-title>
+        </v-list-item>
+      </v-list>
     </template>
 
     <template v-if="user.type === 'ADMIN'">
@@ -37,7 +58,7 @@
         </v-list-item>
       </v-list>
       <v-divider />
-      
+
       <v-list nav>
         <v-list-item link to="/users">
           <v-list-item-icon>
@@ -81,7 +102,7 @@ export default {
     };
   },
   methods: {
-    ...mapActions(["removeUser","setCinemasAction"]),
+    ...mapActions(["removeUser", "setCinemasAction"]),
     logout() {
       this.removeUser();
       this.setCinemasAction(null);
