@@ -20,7 +20,7 @@ public class Grade {
     private long id;
 
     @Column(nullable = false)
-    private int grade;
+    private double grade;
 
     @ManyToOne(cascade = CascadeType.DETACH, fetch = FetchType.LAZY)
     private Movie movie;

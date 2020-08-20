@@ -17,4 +17,6 @@ public interface ProjectioRepository extends JpaRepository<Projection, Long> {
 
     @Query(value = "select distinct p.movie from projections p inner join p.cinema c where ((:cinemaId) = (c.id))")
     List<Movie> findCinemaMovies(@Param("cinemaId") Long cinemaId);
+
+    List<Projection> findAllByCinemaAndMovie(Cinema cinema, Movie movie);
 }

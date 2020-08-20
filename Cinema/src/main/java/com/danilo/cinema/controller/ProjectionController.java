@@ -63,4 +63,16 @@ public class ProjectionController {
 
         return new ResponseEntity<>(projections, HttpStatus.OK);
     }
+
+    @GetMapping("/{cinemaId}/movie/{movieId}")
+    public ResponseEntity<?> getAllProjectionOfMovieInCinema(@PathVariable Long cinemaId, @PathVariable Long movieId){
+
+        List<ProjectionDTO> projections = projectionService.findAllCinemaProjectionsOfMovie(cinemaId, movieId);
+
+        if (projections == null){
+            return new ResponseEntity<>("There is no available seats", HttpStatus.BAD_REQUEST);
+        }
+
+        return new ResponseEntity<>(projections, HttpStatus.OK);
+    }
 }

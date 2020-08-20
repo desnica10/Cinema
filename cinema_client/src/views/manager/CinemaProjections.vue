@@ -45,7 +45,7 @@
         show-expand
         hide-default-footer
         class="elevation-1"
-        height="43em"
+        height="37em"
         style="overflow: auto;"
       >
         <template v-slot:item.date="{ item }">{{item.date | dateFilter}}</template>
@@ -140,6 +140,13 @@ export default {
       axios.get(`/projection/${newCinema.id}`).then((response) => {
         this.projections = response.data;
       });
+
+      axios.get(`/movie/${this.cinema.id}`).then((response) => {
+        this.movies = response.data;
+      });
+
+      this.selectedMovie = null;
+      this.filteredProjections = [];
     },
     selectedMovie: function (newSelectedMovie) {
       this.filteredProjections = [];
@@ -155,6 +162,7 @@ export default {
       axios
         .post(`/projection/${this.cinema.id}`, projection)
         .then((response) => {
+          this.selectedMovie = null;
           this.projections = response.data;
           this.closeDialog();
           this.alert.text = "Successfully done";
@@ -171,6 +179,7 @@ export default {
       axios
         .put(`/projection/${this.cinema.id}`, projection)
         .then((response) => {
+          this.selectedMovie = null;
           this.projections = response.data;
           this.closeDialog();
           this.alert.text = "Successfully done";
@@ -187,6 +196,7 @@ export default {
       axios
         .delete(`/projection/${projection.id}`)
         .then((response) => {
+          this.selectedMovie = null;
           this.projections = response.data;
           this.closeDialog();
           this.alert.text = "Successfully done";
@@ -238,9 +248,6 @@ export default {
 
     axios.get(`/movie/${this.cinema.id}`).then((response) => {
       this.movies = response.data;
-      if (response.data.length > 0) {
-        // this.selectedMovie = this.movies[0].name;
-      }
     });
   },
 };

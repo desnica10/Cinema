@@ -25,15 +25,15 @@ INSERT INTO public.halls (id, capacity, name, cinema_id)
 
 -- Movies --
 INSERT INTO public.movies(id, grade, description, duration, name, type)
-	VALUES (nextval('movie_id_seq'), 7.8, 'Opis 1', 120, 'King', 'ACTION');
+	VALUES (nextval('movie_id_seq'), 0, 'Opis 1', 120, 'King', 'ACTION');
 INSERT INTO public.movies(id, grade, description, duration, name, type)
-	VALUES (nextval('movie_id_seq'), 8, 'Opis 2', 90, 'Mr. Bean', 'COMEDY');
+	VALUES (nextval('movie_id_seq'), 0, 'Opis 2', 90, 'Mr. Bean', 'COMEDY');
 INSERT INTO public.movies(id, grade, description, duration, name, type)
-	VALUES (nextval('movie_id_seq'), 6.8, 'Opis 3', 90, 'Dictator', 'COMEDY');
+	VALUES (nextval('movie_id_seq'), 0, 'Opis 3', 90, 'Dictator', 'COMEDY');
 
 -- Projections --
 INSERT INTO public.projections(id, date, price, cinema_id, movie_id)
-	VALUES (nextval('projection_id_seq'), '2020-08-22', 450, 1, 3);
+	VALUES (nextval('projection_id_seq'), '2020-08-02', 450, 1, 3);
 
 -- Projection-Halls --
 INSERT INTO public.projections_halls(projection_id, hall_id)
