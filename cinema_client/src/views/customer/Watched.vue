@@ -46,7 +46,7 @@
               <v-chip small class="ma-2" color="orange" text-color="white">{{myRate(item)}}</v-chip>
           </template>
           <template v-else>
-              <v-rating style="display: inline;" dense half-increments length="10" v-model="grade.grade" @input="rateMovie(item)"></v-rating>
+              <v-rating style="display: inline;" :hover="true" dense half-increments length="10" v-model="grade.grade" @input="rateMovie(item)"></v-rating>
               <v-chip small class="ma-2" color="orange" text-color="white">{{grade.grade}}</v-chip>
           </template>
         </template>
@@ -139,6 +139,11 @@ export default {
         this.grade.movie = movie;
       axios.put(`movie/watched`, this.grade).then((response) => {
         this.movies = response.data;
+        this.grade = {
+          grade: null,
+          movie: null,
+          customer: null,
+      }
       });
     },
     myRate(movie){

@@ -63,7 +63,7 @@
         </v-fab-transition>
       </v-col>
     </v-row>
-    <admin-dialog
+    <cinema-dialog
       :dialog="dialog"
       :cinema="cinema"
       :type="type"
@@ -79,11 +79,11 @@
 <script>
 import axios from "axios";
 
-import AdminDialog from "../../components/AdminDialog.vue";
+import CinemaDialog from "../../components/CinemaDialog.vue";
 
 export default {
   components: {
-    AdminDialog,
+    CinemaDialog,
   },
   data() {
     return {

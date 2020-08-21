@@ -108,7 +108,7 @@ export default {
         valid: false,
         rules: {
           name: [(v) => !!v || "Name is required"],
-          adress: [(v) => !!v || "Address is required"],
+          address: [(v) => !!v || "Address is required"],
           phone: [(v) => !!v || "Phone is required"],
           email: [(v) => !!v || "Email is required"],
           managers: [

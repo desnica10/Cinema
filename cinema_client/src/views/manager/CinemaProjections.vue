@@ -164,6 +164,7 @@ export default {
         .then((response) => {
           this.selectedMovie = null;
           this.projections = response.data;
+          this.updateMovies();
           this.closeDialog();
           this.alert.text = "Successfully done";
           this.alert.color = "green";
@@ -181,6 +182,7 @@ export default {
         .then((response) => {
           this.selectedMovie = null;
           this.projections = response.data;
+          this.updateMovies();
           this.closeDialog();
           this.alert.text = "Successfully done";
           this.alert.color = "green";
@@ -198,6 +200,7 @@ export default {
         .then((response) => {
           this.selectedMovie = null;
           this.projections = response.data;
+          this.updateMovies();
           this.closeDialog();
           this.alert.text = "Successfully done";
           this.alert.color = "green";
@@ -226,6 +229,11 @@ export default {
     },
     closeDialog() {
       this.dialog = false;
+    },
+    updateMovies() {
+      axios.get(`/movie/${this.cinema.id}`).then((response) => {
+        this.movies = response.data;
+      });
     },
   },
   filters: {

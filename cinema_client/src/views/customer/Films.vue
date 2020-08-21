@@ -136,15 +136,63 @@ export default {
   computed: {
     ...mapGetters(["user", "cinema"]),
     filteredFilms() {
-      return this.movies.filter((x) =>
-        x.name.includes(this.search.name) &&
-        x.description.includes(this.search.description) &&
-        this.search.type === "ALL"
-          ? true
-          : x.type.includes(this.search.type) && this.search.averageGrade == ""
-          ? true
-          : x.averageGrade == this.search.averageGrade
-      );
+      let movies1 = [];
+      let movies2 = [];
+      let movies3 = [];
+      let movies = [];
+
+      if (this.search.name != "") {
+        this.movies.forEach(movie => {
+          if (movie.name.includes(this.search.name)) {
+            movies1.push(movie);
+          }
+        });
+      }else{
+        movies1 = this.movies;
+      }
+
+      if (this.search.description != "") {
+        movies1.forEach(movie => {
+          if (movie.description.includes(this.search.description)) {
+            movies2.push(movie);
+          }
+        });
+      }else{
+        movies2 = movies1
+      }
+
+
+      if (this.search.type != "ALL") {
+        movies2.forEach(movie => {
+          if (movie.type === this.search.type) {
+            movies3.push(movie);
+          }
+        });
+      }else{
+        movies3 = movies2
+      }
+
+      if (this.search.averageGrade != "") {
+        movies2.forEach(movie => {
+          if (movie.averageGrade == this.search.averageGrade) {
+            movies.push(movie);
+          }
+        });
+      }else{
+        movies = movies3
+      }
+
+      return movies;
+
+      // return this.movies.filter((x) =>
+      //   x.name.includes(this.search.name) &&
+      //   x.description.includes(this.search.description) &&
+      //   this.search.type === "ALL"
+      //     ? true
+      //     : x.type.includes(this.search.type) && this.search.averageGrade == ""
+      //     ? true
+      //     : x.averageGrade == this.search.averageGrade
+      // );
     },
   },
   watch: {

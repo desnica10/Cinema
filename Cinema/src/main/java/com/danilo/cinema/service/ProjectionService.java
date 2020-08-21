@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -35,7 +36,7 @@ public class ProjectionService {
             return null;
         }
 
-        List<Projection> projections = projectioRepository.findAllByCinema(cinema);
+        List<Projection> projections = projectioRepository.findAllByCinemaAndDate(cinema, new Date());
         List<ProjectionDTO> projectionDTOs = new ArrayList<>();
 
         for (Projection projection : projections) {
@@ -93,7 +94,7 @@ public class ProjectionService {
             return null;
         }
 
-        List<Projection> projections = projectioRepository.findAllByCinemaAndMovie(cinema, movie);
+        List<Projection> projections = projectioRepository.findAllByCinemaAndMovieAndDate(cinema, movie, new Date());
         List<ProjectionDTO> projectionDTOs = new ArrayList<>();
 
         for (Projection projection : projections) {

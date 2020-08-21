@@ -52,7 +52,7 @@ public class MovieService {
 
     public List<MovieDTO> findCinemaMovies(Long cinemaId) {
 
-        List<Movie> movies = projectioRepository.findCinemaMovies(cinemaId);
+        List<Movie> movies = projectioRepository.findCinemaMovies(cinemaId, new Date());
         List<MovieDTO> movieDTOs = new ArrayList<>();
 
         for (Movie movie : movies) {

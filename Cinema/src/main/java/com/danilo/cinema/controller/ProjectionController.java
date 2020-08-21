@@ -17,7 +17,7 @@ public class ProjectionController {
     ProjectionService projectionService;
 
     @GetMapping("/{cinemaId}")
-    public ResponseEntity<?> getAllCinemas(@PathVariable Long cinemaId){
+    public ResponseEntity<?> getAllCinemaProjections(@PathVariable Long cinemaId){
 
         List<ProjectionDTO> projections = projectionService.findAllCinemaProjections(cinemaId);
 

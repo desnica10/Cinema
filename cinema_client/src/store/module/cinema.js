@@ -29,6 +29,7 @@ const actions = {
                         address: ''
                     });
                 }else {
+                    commit('setCinemas', response.data);
                     commit('setCinema', response.data[0]);
                 }
             });

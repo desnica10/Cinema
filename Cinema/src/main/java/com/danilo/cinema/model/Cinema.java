@@ -40,7 +40,7 @@ public class Cinema {
     )
     Set<User> managers = new HashSet<>();
 
-    @OneToMany(mappedBy = "cinema", cascade = CascadeType.DETACH, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "cinema", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private Set<Hall> halls = new HashSet<>();
 
     @OneToMany(mappedBy = "cinema", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
