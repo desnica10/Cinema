@@ -66,18 +66,18 @@ INSERT INTO public.projections(id, date, price, cinema_id, movie_id)
 INSERT INTO public.projections(id, date, price, cinema_id, movie_id)
 	VALUES (nextval('projection_id_seq'), '2020-08-20', 450, 1, 2); -- Cinaplexxx - Mr. Bean -- 20/08/2020 -- ID #2
 INSERT INTO public.projections(id, date, price, cinema_id, movie_id)
-	VALUES (nextval('projection_id_seq'), '2020-08-30', 450, 1, 4); -- Cinaplexxx - Matrix -- 30/08/2020 -- ID #3
+	VALUES (nextval('projection_id_seq'), '2020-09-30', 450, 1, 4); -- Cinaplexxx - Matrix -- 30/08/2020 -- ID #3
 INSERT INTO public.projections(id, date, price, cinema_id, movie_id)
-	VALUES (nextval('projection_id_seq'), '2020-08-29', 350, 1, 5); -- Cinaplexxx - Harry Potter -- 29/08/2020 -- ID #4
+	VALUES (nextval('projection_id_seq'), '2020-09-29', 350, 1, 5); -- Cinaplexxx - Harry Potter -- 29/08/2020 -- ID #4
 INSERT INTO public.projections(id, date, price, cinema_id, movie_id)
-	VALUES (nextval('projection_id_seq'), '2020-08-30', 350, 1, 5); -- Cinaplexxx - Harry Potter -- 30/08/2020 -- ID #5
+	VALUES (nextval('projection_id_seq'), '2020-09-30', 350, 1, 5); -- Cinaplexxx - Harry Potter -- 30/08/2020 -- ID #5
 
 INSERT INTO public.projections(id, date, price, cinema_id, movie_id)
 	VALUES (nextval('projection_id_seq'), '2020-08-20', 300, 2, 5); -- CineStar - Harry Potter -- 20/08/2020 -- ID #6
 INSERT INTO public.projections(id, date, price, cinema_id, movie_id)
-	VALUES (nextval('projection_id_seq'), '2020-08-29', 300, 2, 4); -- CineStar - Matrix -- 29/08/2020 -- ID #7
+	VALUES (nextval('projection_id_seq'), '2020-09-29', 300, 2, 4); -- CineStar - Matrix -- 29/08/2020 -- ID #7
 INSERT INTO public.projections(id, date, price, cinema_id, movie_id)
-	VALUES (nextval('projection_id_seq'), '2020-08-30', 300, 2, 4); -- CineStar - Matrix -- 30/08/2020 -- ID #8
+	VALUES (nextval('projection_id_seq'), '2020-09-30', 300, 2, 4); -- CineStar - Matrix -- 30/08/2020 -- ID #8
 
 -- Projection-Halls --
 INSERT INTO public.projections_halls(projection_id, hall_id)
